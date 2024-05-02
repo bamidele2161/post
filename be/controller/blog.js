@@ -1,4 +1,9 @@
-const { createBlog, getPosts } = require("../service/blog");
+const {
+  createBlog,
+  getPosts,
+  deletePost,
+  getPost,
+} = require("../service/blog");
 const { validateInput } = require("../util");
 
 exports.CreatePost = async (req, res) => {
@@ -30,5 +35,70 @@ exports.GetAllPosts = async (req, res) => {
     });
   } catch (error) {
     next(error);
+  }
+};
+
+exports.GetAPost = async (req, res) => {
+  try {
+    const postId = req.params.postId;
+
+    const post = await getPost(postId);
+    return res.status(post.statusCode).json({
+      message: post.message,
+      data: post.data,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.GetAllPostsByUserId = async (req, res) => {
+  try {
+    const userId = req.user.id;
+
+    const posts = await getPost(userId);
+    return res.status(posts.statusCode).json({
+      message: posts.message,
+      data: posts.data,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.UpdatePost = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const postId = req.params.postId;
+    const { title, body, image } = req.body;
+
+    const values = [title, body, image, postId, userId];
+
+    const modifyPost = await updatePost(values);
+    return res.status(modifyPost.statusCode).json({
+      message: modifyPost.message,
+      data: modifyPost.data,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: "Error occured!",
+    });
+  }
+};
+
+exports.DeletePost = async (req, res) => {
+  try {
+    const userId = req.user.id;
+    const postId = req.params.postId;
+
+    const removePost = await deletePost(userId, postId);
+
+    return res.status(removePost.statusCode).json({
+      message: removePost.message,
+    });
+  } catch (error) {
+    return res.status(500).json({
+      message: "Error occured!",
+    });
   }
 };

@@ -6,13 +6,13 @@ const {
 } = require("../service/blog");
 const { validateInput } = require("../util");
 
-exports.CreatePost = async (req, res) => {
+exports.CreatePost = async (req, res, next) => {
   try {
     const { title, body } = req.body;
     if (!validateInput(title, "length", 3, 100)) {
       throw new BadRequest("Your title must be between 3 and 30 characters.");
     }
-    const userId = req.user.id;
+    const userId = 1;
 
     const values = [title, body, userId];
     const post = await createBlog(values);
@@ -26,7 +26,7 @@ exports.CreatePost = async (req, res) => {
   }
 };
 
-exports.GetAllPosts = async (req, res) => {
+exports.GetAllPosts = async (req, res, next) => {
   try {
     const posts = await getPosts();
     return res.status(posts.statusCode).json({
@@ -38,7 +38,7 @@ exports.GetAllPosts = async (req, res) => {
   }
 };
 
-exports.GetAPost = async (req, res) => {
+exports.GetAPost = async (req, res, next) => {
   try {
     const postId = req.params.postId;
 
@@ -52,7 +52,7 @@ exports.GetAPost = async (req, res) => {
   }
 };
 
-exports.GetAllPostsByUserId = async (req, res) => {
+exports.GetAllPostsByUserId = async (req, res, next) => {
   try {
     const userId = req.user.id;
 
@@ -66,7 +66,7 @@ exports.GetAllPostsByUserId = async (req, res) => {
   }
 };
 
-exports.UpdatePost = async (req, res) => {
+exports.UpdatePost = async (req, res, next) => {
   try {
     const userId = req.user.id;
     const postId = req.params.postId;
@@ -80,13 +80,11 @@ exports.UpdatePost = async (req, res) => {
       data: modifyPost.data,
     });
   } catch (error) {
-    return res.status(500).json({
-      message: "Error occured!",
-    });
+    next(error);
   }
 };
 
-exports.DeletePost = async (req, res) => {
+exports.DeletePost = async (req, res, next) => {
   try {
     const userId = req.user.id;
     const postId = req.params.postId;
@@ -97,8 +95,6 @@ exports.DeletePost = async (req, res) => {
       message: removePost.message,
     });
   } catch (error) {
-    return res.status(500).json({
-      message: "Error occured!",
-    });
+    next(error);
   }
 };

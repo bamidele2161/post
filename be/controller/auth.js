@@ -63,3 +63,13 @@ exports.Login = async (req, res, next) => {
     next(error);
   }
 };
+
+exports.LogoutUser = (req, res) => {
+  try {
+    //clear the cookie
+    res.clearCookie("accessToken");
+
+    // Send a response message along with the status code
+    res.status(200).json({ message: "Logout successful", statusCode: 200 });
+  } catch (error) {}
+};

@@ -5,6 +5,7 @@ const {
   deleteBlogByIdQuery,
   getBlogByIdQuery,
   updateBlogByIdQuery,
+  getAllBlogsQuery,
 } = require("../query/blog");
 
 const createBlog = async (values) => {
@@ -35,7 +36,7 @@ const createBlog = async (values) => {
 
 const getPosts = async () => {
   try {
-    const getAllPost = await dbPool.query(getBlogs);
+    const getAllPost = await dbPool.query(getAllBlogsQuery);
 
     if (getAllPost.rowCount < 1) {
       throw new NotFound("No record found");

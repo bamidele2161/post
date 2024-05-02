@@ -9,6 +9,7 @@ const cookieParser = require("cookie-parser");
 const { DatabaseConnection } = require("./config/dbConnection");
 const { ErrorHandler } = require("./middleware/errorHandler");
 const authRoutes = require("./routes/auth");
+const blogRoutes = require("./routes/blog");
 // Parse incoming request bodies
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -45,7 +46,7 @@ app.use(cors(corsOptions));
 
 // Routes
 app.use("/user", authRoutes);
-
+app.use("/blog", blogRoutes);
 app.use(ErrorHandler);
 // Create HTTP server
 const server = http.createServer(app);

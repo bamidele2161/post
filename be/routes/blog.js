@@ -18,9 +18,9 @@ router.get("/r", (req, res) => {
 
 router.post("/", CreatePost);
 router.get("/", GetAllPosts);
-router.get("/user", authMiddleware, GetAllPostsByUserId);
+router.get("/user", GetAllPostsByUserId);
 router.get("/:postId", GetAPost);
-router.put("/:postId", authMiddleware, UpdatePost);
-router.delete("/:postId", authMiddleware, DeletePost);
+router.put("/:postId", UpdatePost);
+router.delete("/:postId", DeletePost);
 
 module.exports = router;

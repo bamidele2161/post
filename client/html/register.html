@@ -1,0 +1,83 @@
+<span style="font-family: verdana, geneva, sans-serif"
+  ><!DOCTYPE html>
+  <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <title>Cool Login form | By Code Info</title>
+      <link rel="stylesheet" href="../css/auth.css" />
+      <!-- Font Awesome Cdn Link -->
+      <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+      />
+      <script
+        src="https://kit.fontawesome.com/64d58efce2.js"
+        crossorigin="anonymous"
+        anonymous
+      ></script>
+    </head>
+    <body>
+      <div id="success" class="success"></div>
+      <div id="error" class="error"></div>
+
+      <nav class="navbar">
+        <img src="../images/log.png" class="logo" alt="" />
+        <ul class="links-container">
+          <li class="link-item"><a href="./home.html" class="link">HOME</a></li>
+          <!-- <li class="link-item">
+            <a href="./editor.html" class="link">EDITOR</a>
+          </li>
+          <li class="link-item">
+            <a href="./personal.html" class="link">PERSONAL</a>
+          </li> -->
+          <li class="link-item">
+            <a href="./login.html" class="link">LOGIN</a>
+          </li>
+          <!-- <li class="link-item">
+            <a href="./register.html" class="link">SIGN UP</a>
+          </li> -->
+        </ul>
+      </nav>
+
+      <div class="component">
+        <div class="wrapper">
+          <h1>Register</h1>
+          <p>Enter your details below <br /></p>
+          <form>
+            <input type="text" placeholder="First name" id="firstname" />
+            <div id="firstErr" class="errorField"></div>
+            <input type="text" placeholder="Last name" id="lastname" />
+            <div id="lastErr" class="errorField"></div>
+            <input type="email" placeholder="email" id="email" />
+            <div id="emailErr" class="errorField"></div>
+            <input type="password" placeholder="Password" id="password" />
+            <div id="passwordErr" class="errorField"></div>
+          </form>
+
+          <div class="captcha">
+            <label for="captcha-input">Enter Captcha</label>
+            <div class="preview"></div>
+            <div class="captcha-form">
+              <input
+                type="text"
+                placeholder="Enter captcha text"
+                id="captcha-input-value"
+                class="captcha-input"
+              />
+              <button class="captcha-refresh" id="captcha-refresh">
+                <i class="fa fa-refresh"></i>
+              </button>
+            </div>
+          </div>
+          <button id="submit-btn">Sign up</button>
+
+          <div class="not-member">
+            Alredy a member? <a href="./login.html">Login</a>
+          </div>
+        </div>
+      </div>
+
+      <script type="module" src="../js/register.js"></script>
+    </body>
+  </html>
+</span>

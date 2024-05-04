@@ -19,15 +19,6 @@ const createAccount = async (values) => {
     if (!createUser) {
       throw new BadRequest("Error occured while creating user");
     }
-
-    //send user email
-    const subject = "Account Created Successfully.";
-    const payload = {
-      name: createUser.rows[0].first_name,
-    };
-
-    // sendEmail(payload, email, subject, "../view/registration.ejs");
-
     return {
       message: "Account created successfully",
       data: {
@@ -65,7 +56,7 @@ const userLogin = async (payload) => {
     const token = generateToken(
       { id: checkUserExistence.rows[0].id },
       userSecret,
-      "14d"
+      "1d"
     );
 
     return {

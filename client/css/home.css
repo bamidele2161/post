@@ -247,7 +247,39 @@ header.shadow {
   margin-top: 4px;
   font-weight: 400;
 }
-
+.blog-btns {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.delete-btn {
+  padding: 0 10px;
+  border-radius: 10px;
+  width: 80px;
+  height: 40px;
+  background: red;
+  color: #fff;
+  font-size: 12px;
+  text-decoration: none;
+  text-transform: capitalize;
+  border: none;
+  margin-top: 0px;
+}
+.update-btn {
+  padding: 0px 10px;
+  border-radius: 10px;
+  background: tomato;
+  width: 80px;
+  height: 40px;
+  font-size: 12px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  text-decoration: none;
+  text-transform: capitalize;
+}
 .post-description {
   font-size: 0.9rem;
   line-height: 1.5rem;
@@ -260,7 +292,7 @@ header.shadow {
 
 .profile {
   display: flex;
-  align-items: center;
+  align-items: center !important;
   gap: 10px;
 }
 
@@ -268,7 +300,10 @@ header.shadow {
   width: 35px;
   height: 35px;
   border-radius: 50%;
-  object-fit: cover;
+  text-align: center;
+  font-weight: bold;
+  padding-top: 3px;
+  margin-bottom: 0px;
   object-position: center;
   border: 2px solid var(--second-color);
 }

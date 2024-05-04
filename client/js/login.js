@@ -13,7 +13,7 @@ const displayMessage = (message, type) => {
   setTimeout(() => {
     notificationElement.style.display = "none";
     if (type === "success") {
-      window.location.href = "../html/login.html"; // Redirect to login page on success
+      window.location.href = "../html/mypost.html"; // Redirect to login page on success
     }
   }, 3000); // 3000 milliseconds = 3 seconds
 };
@@ -62,20 +62,12 @@ const validateEmail = (email) => {
 const submitForm = async (event) => {
   event.preventDefault(); // Prevent the default form submission
   clearError();
-  const firstname = document.getElementById("firstname").value;
-  const lastname = document.getElementById("lastname").value;
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
 
   let isValid = true;
 
-  if (firstname.length < 3) {
-    displayError("firstErr", "Minimum of 3 characters");
-    isValid = false;
-  } else if (lastname.length < 3) {
-    displayError("lastErr", "Minimum of 3 characters");
-    isValid = false;
-  } else if (!validateEmail(email)) {
+  if (!validateEmail(email)) {
     displayError("emailErr", "Please provide a valid email");
     isValid = false;
   } else if (password.length < 6) {
@@ -84,12 +76,10 @@ const submitForm = async (event) => {
   } else if (isValid) {
     // const csrfToken = await getCsrfToken();
     const data = {
-      first_name: firstname,
-      last_name: lastname,
       email: email,
       password: password,
     };
-    fetch("http://localhost:8000/user", {
+    fetch("http://localhost:8000/user/login", {
       method: "POST",
       credentials: "include",
       headers: {

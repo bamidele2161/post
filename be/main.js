@@ -5,7 +5,7 @@ const dotenv = require("dotenv");
 const path = require("path");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
-// const csurf = require("csurf");
+const csurf = require("csurf");
 const { DatabaseConnection } = require("./config/dbConnection");
 const { ErrorHandler } = require("./middleware/errorHandler");
 const authRoutes = require("./routes/auth");
@@ -30,19 +30,19 @@ const corsOptions = {
   origin: "http://localhost:5501",
   credentials: true,
   methods: "PUT,POST,DELETE",
-  allowedHeaders: "Content-Type",
+  allowedHeaders: "Content-Type, CSRF-Token",
 };
 app.use(cors(corsOptions));
 
 // Cross-Site Request Forgery (CSRF) protection middleware
-// const csrfMiddleware = csurf({ cookie: true });
-// app.use(csrfMiddleware);
+const csrfMiddleware = csurf({ cookie: true });
+app.use(csrfMiddleware);
 
 // Route to retrieve CSRF token
-// app.get("/csrf-token", (req, res) => {
-//   console.log({ csrfToken: req.csrfToken() });
-//   res.json({ csrfToken: req.csrfToken() });
-// });
+app.get("/csrf-token", (req, res) => {
+  console.log({ csrfToken: req.csrfToken() });
+  res.json({ csrfToken: req.csrfToken() });
+});
 
 // Routes
 app.use("/user", authRoutes);

@@ -82,7 +82,7 @@ const submitForm = async (event) => {
     displayError("passwordErr", "Minimum of 6 characters");
     isValid = false;
   } else if (isValid) {
-    // const csrfToken = await getCsrfToken();
+    const csrfToken = await getCsrfToken();
     const data = {
       first_name: firstname,
       last_name: lastname,
@@ -94,7 +94,7 @@ const submitForm = async (event) => {
       credentials: "include",
       headers: {
         "Content-Type": "application/json",
-        // "CSRF-Token": csrfToken,
+        "CSRF-Token": csrfToken,
       },
       body: JSON.stringify(data), // Convert data to JSON format
     })

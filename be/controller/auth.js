@@ -37,6 +37,7 @@ exports.UserRegistration = async (req, res, next) => {
     return res.status(createUser.statusCode).json({
       message: createUser.message,
       data: createUser.data,
+      statusCode: createUser.statusCode,
     });
   } catch (error) {
     next(error);
@@ -58,6 +59,7 @@ exports.Login = async (req, res, next) => {
     return res.status(login.statusCode).json({
       message: login.message,
       data: login.data,
+      statusCode: login.statusCode,
     });
   } catch (error) {
     next(error);

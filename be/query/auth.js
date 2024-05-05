@@ -17,16 +17,16 @@ const createUserQuery = `
 // SQL query to update user's reset code and password by ID
 const updateUserCodeByIdQuery = `
   UPDATE "users"
-  SET ressetcode = null,
-  password = $1
+  SET qrcode = null,
+  enabled = $1
   WHERE id = $2 
   RETURNING *
 `;
 
 // SQL query to update user's reset code by ID
-const updateUserResetCodeByIdQuery = `
+const updateUserResetQRCodeByIdQuery = `
   UPDATE "users"
-  SET ressetcode = $1
+  SET qrcode = $1
   WHERE id = $2 
   RETURNING *
 `;
@@ -45,6 +45,6 @@ module.exports = {
   checkUserByIdQuery,
   createUserQuery,
   updateUserCodeByIdQuery,
-  updateUserResetCodeByIdQuery,
+  updateUserResetQRCodeByIdQuery,
   deleteUserByEmailQuery,
 };

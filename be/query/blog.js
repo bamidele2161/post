@@ -19,9 +19,8 @@ const createBlogQuery = `
 const updateBlogByIdQuery = `
   UPDATE "post"
   SET title = $1,
-      body = $2,
-      image = $3
-  WHERE id = $4 AND userId = $5
+      body = $2
+  WHERE id = $3 AND userId = $4
   RETURNING *
 `;
 

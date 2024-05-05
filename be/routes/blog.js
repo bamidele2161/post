@@ -8,6 +8,7 @@ const {
   GetAPost,
   GetAllPostsByUserId,
 } = require("../controller/blog");
+const authorizer = require("../middleware/auth");
 
 router.get("/r", (req, res) => {
   console.log("test");
@@ -16,11 +17,11 @@ router.get("/r", (req, res) => {
   });
 });
 
-router.post("/", CreatePost);
+router.post("/", authorizer, CreatePost);
 router.get("/", GetAllPosts);
-router.get("/user", GetAllPostsByUserId);
+router.get("/user", authorizer, GetAllPostsByUserId);
 router.get("/:postId", GetAPost);
-router.put("/:postId", UpdatePost);
-router.delete("/:postId", DeletePost);
+router.put("/:postId", authorizer, UpdatePost);
+router.delete("/:postId", authorizer, DeletePost);
 
 module.exports = router;

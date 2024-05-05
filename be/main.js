@@ -29,7 +29,7 @@ DatabaseConnection();
 const corsOptions = {
   origin: "http://localhost:5501",
   credentials: true,
-  methods: "PUT,POST,DELETE",
+  methods: "PUT,POST,DELETE,GET",
   allowedHeaders: "Content-Type, CSRF-Token",
 };
 app.use(cors(corsOptions));
@@ -40,7 +40,6 @@ app.use(csrfMiddleware);
 
 // Route to retrieve CSRF token
 app.get("/csrf-token", (req, res) => {
-  console.log({ csrfToken: req.csrfToken() });
   res.json({ csrfToken: req.csrfToken() });
 });
 

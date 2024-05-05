@@ -56,9 +56,13 @@ const userLogin = async (payload) => {
     const token = generateToken(
       { id: checkUserExistence.rows[0].id },
       userSecret,
-      "1d"
+      "1h"
     );
+    //Get the current date timestamp
+    const currentDate = Date.now();
 
+    //add 1hour in milliseconds
+    const oneHourLater = new Date(currentDate + 3600000);
     return {
       message: "User login successfully",
       data: {
@@ -68,6 +72,7 @@ const userLogin = async (payload) => {
         email: checkUserExistence.rows[0].email,
       },
       token: token,
+      expiresIn: oneHourLater,
       statusCode: 200,
     };
   } catch (error) {

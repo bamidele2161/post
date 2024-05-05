@@ -60,6 +60,7 @@ exports.Login = async (req, res, next) => {
       message: login.message,
       data: login.data,
       statusCode: login.statusCode,
+      expiresIn: login.expiresIn,
     });
   } catch (error) {
     next(error);

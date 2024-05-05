@@ -12,6 +12,9 @@
       />
     </head>
     <body>
+      <div id="success" class="success"></div>
+      <div id="error" class="error"></div>
+
       <nav class="navbar">
         <img src="../images/log.png" class="logo" alt="" />
         <ul class="links-container">
@@ -23,7 +26,7 @@
             <a href="./mypost.html" class="link">POST</a>
           </li>
           <li class="link-item">
-            <a href="./login.html" class="link">LOGOUT</a>
+            <a href="./login.html" class="link" id="logout">LOGOUT</a>
           </li>
         </ul>
       </nav>
@@ -36,15 +39,18 @@
             been missed!
           </p> -->
           <form>
-            <input type="text" placeholder="Enter title" />
+            <input type="text" placeholder="Enter title" id="title" />
             <textarea
               type="text"
+              id="body"
               placeholder="Start writing here..."
             ></textarea>
           </form>
-          <button>Post</button>
+          <button id="submit-btn">Post</button>
         </div>
       </div>
+
+      <script type="module" src="../js/post.js"></script>
     </body>
   </html>
 </span>

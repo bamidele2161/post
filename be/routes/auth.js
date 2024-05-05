@@ -11,6 +11,6 @@ router.get("/r", (req, res) => {
 
 router.post("/", UserRegistration);
 router.post("/login", Login);
-router.post("/logout", LogoutUser);
+router.get("/logout", LogoutUser);
 
 module.exports = router;

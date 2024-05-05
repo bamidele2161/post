@@ -1,5 +1,3 @@
-const fonts = ["cursive", "sans-serif", "serif", "monospace"];
-
 // Function to display success or error message
 const displayMessage = (message, type) => {
   const notificationElement =
@@ -13,7 +11,7 @@ const displayMessage = (message, type) => {
   setTimeout(() => {
     notificationElement.style.display = "none";
     if (type === "success") {
-      window.location.href = "../html/qr.html"; // Redirect to login page on success
+      window.location.href = "../html/mypost.html"; // Redirect to login page on success
     }
   }, 3000); // 3000 milliseconds = 3 seconds
 };
@@ -58,53 +56,61 @@ const validateEmail = (email) => {
   return regEx.test(email);
 };
 
-// Function to submit registration form
-const submitForm = async (event) => {
-  event.preventDefault(); // Prevent the default form submission
-  clearError();
-  const email = document.getElementById("email").value;
-  const password = document.getElementById("password").value;
-
-  let isValid = true;
-
-  if (!validateEmail(email)) {
-    displayError("emailErr", "Please provide a valid email");
-    isValid = false;
-  } else if (password.length < 6) {
-    displayError("passwordErr", "Minimum of 6 characters");
-    isValid = false;
-  } else if (isValid) {
-    const csrfToken = await getCsrfToken();
-    const data = {
-      email: email,
-      password: password,
-    };
-    fetch("http://localhost:8000/user/login", {
-      method: "POST",
-      credentials: "include",
-      headers: {
-        "Content-Type": "application/json",
-        "CSRF-Token": csrfToken,
-      },
-      body: JSON.stringify(data), // Convert data to JSON format
+const genetateQR = () => {
+  fetch("http://localhost:8000/qr", {
+    method: "GET",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.statusCode === 200) {
+        document.getElementById("qr-preview").src = data.image;
+      } else {
+        displayMessage(data.error, "error", null);
+      }
     })
-      .then((response) => response.json())
-      .then((data) => {
-        if (data.statusCode === 200) {
-          displayMessage(data?.message, "success");
-          //save the expiration time to local storage
-          localStorage.setItem("expirationTime", data.expiresIn);
-        } else {
-          displayMessage(data?.error, "error");
-        }
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
-  } else {
-    console.log("Error:", error);
-  }
+    .catch((error) => {
+      console.error("Error:", error);
+    });
 };
 
+const handleUpdateQr = async () => {
+  // Populate form fields with blog item details
+  var inputQrCode = document.getElementById("qr-input-value").value;
+  // Create data object to send to endpoint
+  const csrfToken = await getCsrfToken();
+  const data = {
+    qrCode: inputQrCode,
+  };
+  // Send PUT request to update blog post
+  fetch("http://localhost:8000/qr", {
+    method: "PUT",
+    credentials: "include",
+    headers: {
+      "Content-Type": "application/json",
+      "CSRF-Token": csrfToken,
+    },
+    body: JSON.stringify(data), // Convert data to JSON format
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.statusCode === 200) {
+        displayMessage(data?.message, "success", "../html/mypost.html");
+      } else {
+        displayMessage(data.error, "error", null);
+        // window.location.href = "../html/login.html";
+      }
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+};
+
+genetateQR();
 // Event listener for form submission
-document.getElementById("submit-btn").addEventListener("click", submitForm);
+document.getElementById("qr-refresh").addEventListener("click", genetateQR);
+
+document.getElementById("submit-btn").addEventListener("click", handleUpdateQr);

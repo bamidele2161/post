@@ -157,7 +157,6 @@ const handleLogout = () => {
   })
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
       if (data.statusCode === 200) {
         showMessage(data?.message, "success", "../html/login.html");
       } else {

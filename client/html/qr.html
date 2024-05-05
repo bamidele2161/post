@@ -3,13 +3,18 @@
   <html lang="en">
     <head>
       <meta charset="UTF-8" />
-      <title>Login form</title>
+      <title>2FA Authenticator</title>
       <link rel="stylesheet" href="../css/auth.css" />
       <!-- Font Awesome Cdn Link -->
       <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
       />
+      <script
+      src="https://kit.fontawesome.com/64d58efce2.js"
+      crossorigin="anonymous"
+      anonymous
+    ></script>
     </head>
     <body>
       <div id="success" class="success"></div>
@@ -19,15 +24,9 @@
         <img src="../images/log.png" class="logo" alt="" />
         <ul class="links-container">
           <li class="link-item"><a href="./home.html" class="link">HOME</a></li>
-          <!-- <li class="link-item">
-            <a href="./editor.html" class="link">EDITOR</a>
-          </li>
-          <li class="link-item">
-            <a href="./personal.html" class="link">PERSONAL</a>
-          </li>
           <li class="link-item">
             <a href="./login.html" class="link">LOGIN</a>
-          </li> -->
+          </li>
           <li class="link-item">
             <a href="./register.html" class="link">SIGN UP</a>
           </li>
@@ -38,20 +37,27 @@
         <div class="wrapper">
           <h1>Hello Again!</h1>
           <p>
-            Welcome back you've <br />
-            been missed!
+            Welcome back !
           </p>
-          <form>
-            <input type="email" placeholder="Email" id="email" />
-            <div id="emailErr" class="errorField"></div>
-            <input type="password" placeholder="Password" id="password" />
-            <div id="passwordErr" class="errorField"></div>
-            <p class="recover">
-              <a href="#">Recover Password</a>
-            </p>
-          </form>
 
-          <button id="submit-btn">Sign in</button>
+
+          <div class="qr">
+            <label for="qr-input">Please Scan the Code</label>
+            <img class="preview" src="" id="qr-preview"></img>
+            <div class="qr-form">
+              <input
+                type="text"
+                placeholder="Enter code"
+                id="qr-input-value"
+                class="qr-input"
+              />
+              <button class="qr-refresh" id="qr-refresh">
+                <i class="fa fa-refresh"></i>
+              </button>
+            </div>
+          </div>
+
+          <button id="submit-btn">Proceed</button>
 
           <div class="not-member">
             Not a member? <a href="./register.html">Register Now</a>
@@ -59,7 +65,7 @@
         </div>
       </div>
 
-      <script type="module" src="../js/login.js"></script>
+      <script type="module" src="../js/qr.js"></script>
     </body>
   </html>
 </span>

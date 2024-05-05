@@ -56,7 +56,6 @@ const submitForm = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         if (data.statusCode === 200) {
           data?.data?.forEach((item) => {
             const blogPost = `
@@ -124,7 +123,6 @@ const deleteBlogPost = async (e) => {
   })
     .then((response) => response.json())
     .then((data) => {
-      console.log(data);
       if (data.statusCode === 200) {
         showNotification(data.message, "success");
         // Remove the deleted blog post card from the UI
@@ -143,7 +141,6 @@ const deleteBlogPost = async (e) => {
 const updateBlogPost = (e) => {
   e.stopPropagation();
   const blogItem = JSON.parse(e.target.getAttribute("data-item"));
-  console.log(blogItem);
   localStorage.setItem("blogItem", JSON.stringify(blogItem));
 };
 

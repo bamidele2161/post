@@ -79,6 +79,8 @@ const handleSubmit = async (event) => {
         showMessage(data?.message, "success", "../html/mypost.html");
       } else if (data.statusCode === 400) {
         showMessage(data?.error, "error", null);
+      } else if (data.error) {
+        showMessage(data?.error, "error", null);
       } else {
         // showMessage(
         //   data.error + " Please Sign In",

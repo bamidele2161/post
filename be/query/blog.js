@@ -5,7 +5,17 @@ const getBlogByIdQuery = `SELECT * FROM post WHERE id = $1`;
 const getBlogsByUserIdQuery = `SELECT * FROM post WHERE userId = $1`;
 
 // SQL query to get all blog post
-const getAllBlogsQuery = `SELECT * FROM post`;
+const getAllBlogsQuery = `SELECT 
+  "post"."id" AS "id", 
+  "post"."title" AS "title", 
+  "post".body AS "body", 
+  "post"."userid" AS "userId", 
+  "post"."created_at" AS "created_at", 
+  "users"."first_name" AS "first_name"
+FROM 
+  "post" 
+LEFT JOIN 
+  "users" ON "users".id = "post"."userid"`;
 
 // SQL query to create a new blog post
 const createBlogQuery = `

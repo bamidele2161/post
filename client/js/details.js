@@ -71,7 +71,7 @@ const submitForm = () => {
                     0,
                     10
                   )}</span>
-                  <p class="post-description">
+                  <p class="post-details-description">
                   ${data.data.body}
                   </p>
                   </div>

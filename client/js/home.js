@@ -60,8 +60,8 @@ const renderData = (data) => {
             ${item.body}
             </p>
             <div class="profile">
-            <p class="profile-img">T</p>
-            <span class="profile-name">Taye</span>
+            <p class="profile-img">${item.first_name.slice(0, 1)}</p>
+            <span class="profile-name">${item.first_name}</span>
             </div>
         </div>
       

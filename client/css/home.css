@@ -289,7 +289,11 @@ header.shadow {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-
+.post-details-description {
+  font-size: 0.9rem;
+  line-height: 1.5rem;
+  margin: 5px 0 10px;
+}
 .profile {
   display: flex;
   align-items: center !important;

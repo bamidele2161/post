@@ -63,8 +63,10 @@ const submitForm = () => {
                 <div class="post-box" key=${item.id}>
                 <!-- <img src="images/img1.jpg" alt="" class="post-img" /> -->
                 <!-- <h2 class="category">Tech</h2> -->
-                <a href="#" class="post-title">${item.title}</a>
-                <span class="post-date">12 Feb 2022</span>
+                <a href="../html/details.html" class="post-title" data-id="${
+                  item.id
+                }">${item.title}</a>
+                <span class="post-date">${item.created_at.slice(0, 10)}</span>
                 <p class="post-description">
                 ${item.body}
                 </p>
@@ -88,6 +90,9 @@ const submitForm = () => {
 
             document.getElementById("blogs-section").innerHTML += blogPost;
           });
+          document.querySelectorAll(".post-title").forEach((btn) => {
+            btn.addEventListener("click", viewPost);
+          });
 
           document.querySelectorAll(".delete-btn").forEach((btn) => {
             btn.addEventListener("click", deleteBlogPost);
@@ -107,6 +112,12 @@ const submitForm = () => {
         console.error("Error:", error);
       });
   }
+};
+
+//function to view post details
+const viewPost = async (e) => {
+  const postId = e.target.dataset.id;
+  localStorage.setItem("postId", JSON.stringify(postId));
 };
 
 // Function to delete a blog post

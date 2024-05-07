@@ -52,7 +52,9 @@ const renderData = (data) => {
         <div class="post-box tech" key=${item.id}>
             <!-- <img src="images/img1.jpg" alt="" class="post-img" /> -->
             <!-- <h2 class="category">Tech</h2> -->
-            <a href="#" class="post-title">${item.title}</a>
+            <a href="../html/details.html" class="post-title" data-id="${
+              item.id
+            }">${item.title}</a>
             <span class="post-date">${item.created_at.slice(0, 10)}</span>
             <p class="post-description">
             ${item.body}
@@ -67,6 +69,10 @@ const renderData = (data) => {
 
     // Append each blog card to the blogs section
     blogsSection.innerHTML += blogPost;
+
+    document.querySelectorAll(".post-title").forEach((btn) => {
+      btn.addEventListener("click", viewPost);
+    });
   });
 
   // Add event listeners to the read buttons
@@ -77,6 +83,12 @@ const renderData = (data) => {
       localStorage.setItem("selectedId", JSON.stringify(selectedId));
     });
   });
+};
+
+//function to view post details
+const viewPost = async (e) => {
+  const postId = e.target.dataset.id;
+  localStorage.setItem("postId", JSON.stringify(postId));
 };
 
 // Fetch data when the window loads

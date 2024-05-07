@@ -60,7 +60,7 @@ const getPost = async (postId) => {
     }
     return {
       message: "Post fetched successfully",
-      data: post.rows,
+      data: post.rows[0],
       statusCode: 200,
     };
   } catch (error) {

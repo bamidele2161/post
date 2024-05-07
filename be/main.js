@@ -11,13 +11,13 @@ const { ErrorHandler } = require("./middleware/errorHandler");
 const authRoutes = require("./routes/auth");
 const blogRoutes = require("./routes/blog");
 const securityRoutes = require("./routes/security");
+
 // Parse incoming request bodies
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Load environment variables
 dotenv.config();
-
 dotenv.config({ path: path.resolve(__dirname, "./.env") });
 
 // Parse cookies attached to the request
@@ -48,7 +48,10 @@ app.get("/csrf-token", (req, res) => {
 app.use("/user", authRoutes);
 app.use("/blog", blogRoutes);
 app.use("/qr", securityRoutes);
+
+//Error handler
 app.use(ErrorHandler);
+
 // Create HTTP server
 const server = http.createServer(app);
 

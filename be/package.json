@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --forceExit --detectOpenHandles --runInBand"
   },
   "keywords": [],
   "author": "",
@@ -22,6 +22,7 @@
     "nodemon": "^3.1.0",
     "otplib": "^12.0.1",
     "pg": "^8.11.5",
-    "qrcode": "^1.5.3"
+    "qrcode": "^1.5.3",
+    "supertest": "^7.0.0"
   }
 }

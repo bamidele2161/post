@@ -26,6 +26,14 @@ From the root directory, navigate to the Client Directory:<br>
 
 `live-server`
 
+### Unit Testing: Running Tests
+
+To run unit tests for the server-side code, navigate to the server directory and execute:
+
+`cd be`
+
+`npm run test`
+
 ## Features
 
 - Robust user authentication with secure session management and password hashing.
